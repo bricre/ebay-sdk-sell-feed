@@ -5,6 +5,7 @@ namespace Ebay\Sell\Feed\Api;
 use Ebay\Sell\Feed\Model\CreateServiceMetricsTaskRequest;
 use Ebay\Sell\Feed\Model\CustomerServiceMetricTaskCollection;
 use Ebay\Sell\Feed\Model\ServiceMetricsTask;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Task extends AbstractAPI
 {
@@ -49,9 +50,9 @@ class Task extends AbstractAPI
      *                       the response contains items 11-30 from the complete result set. <br /><br
      *                       /><b>Default: </b>0
      *
-     * @return CustomerServiceMetricTaskCollection
+     * @return CustomerServiceMetricTaskCollection|UnexpectedResponse
      */
-    public function gets(array $queries = []): CustomerServiceMetricTaskCollection
+    public function gets(array $queries = [])
     {
         return $this->request(
         'getCustomerServiceMetricTasks',
@@ -91,9 +92,9 @@ class Task extends AbstractAPI
      *                                                 'accept-language'	string	Use this header to specify the natural language in
      *                                                 which the authenticated user desires the response
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function create(CreateServiceMetricsTaskRequest $Model, array $headers = []): mixed
+    public function create(CreateServiceMetricsTaskRequest $Model, array $headers = []): UnexpectedResponse
     {
         return $this->request(
         'createCustomerServiceMetricTask',
@@ -112,9 +113,9 @@ class Task extends AbstractAPI
      * @param string $task_id use this path parameter to specify the task ID value for
      *                        the customer service metric task to retrieve
      *
-     * @return ServiceMetricsTask
+     * @return ServiceMetricsTask|UnexpectedResponse
      */
-    public function get(string $task_id): ServiceMetricsTask
+    public function get(string $task_id)
     {
         return $this->request(
         'getCustomerServiceMetricTask',

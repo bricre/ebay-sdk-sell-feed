@@ -8,6 +8,7 @@ use Ebay\Sell\Feed\Model\ScheduleTemplateResponse;
 use Ebay\Sell\Feed\Model\UpdateUserScheduleRequest;
 use Ebay\Sell\Feed\Model\UserScheduleCollection;
 use Ebay\Sell\Feed\Model\UserScheduleResponse;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Schedule extends AbstractAPI
 {
@@ -39,9 +40,9 @@ class Schedule extends AbstractAPI
      *                       parameter is not set, the default value is used and the first page of records is
      *                       returned.<br /><br /><b>Default: </b>0
      *
-     * @return UserScheduleCollection
+     * @return UserScheduleCollection|UnexpectedResponse
      */
-    public function gets(array $queries = []): UserScheduleCollection
+    public function gets(array $queries = [])
     {
         return $this->request(
         'getSchedules',
@@ -90,9 +91,9 @@ class Schedule extends AbstractAPI
      *                                         <strong>scheduleEndDate</strong>, and <strong>schemaVersion</strong> are
      *                                         conditional
      *
-     * @return object
+     * @return object|UnexpectedResponse
      */
-    public function create(CreateUserScheduleRequest $Model): object
+    public function create(CreateUserScheduleRequest $Model)
     {
         return $this->request(
         'createSchedule',
@@ -114,9 +115,9 @@ class Schedule extends AbstractAPI
      *                            details. This ID is generated when the schedule was created by the
      *                            <strong>createSchedule</strong> method.
      *
-     * @return UserScheduleResponse
+     * @return UserScheduleResponse|UnexpectedResponse
      */
-    public function get(string $schedule_id): UserScheduleResponse
+    public function get(string $schedule_id)
     {
         return $this->request(
         'getSchedule',
@@ -152,9 +153,9 @@ class Schedule extends AbstractAPI
      *                                               <strong>scheduleEndDate</strong>, and <strong>schemaVersion</strong> are
      *                                               conditional
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function update(string $schedule_id, UpdateUserScheduleRequest $Model): mixed
+    public function update(string $schedule_id, UpdateUserScheduleRequest $Model): UnexpectedResponse
     {
         return $this->request(
         'updateSchedule',
@@ -176,9 +177,9 @@ class Schedule extends AbstractAPI
      *                            schedules based on a specified feed_type and find the schedule_id of the
      *                            schedule to delete.
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function delete(string $schedule_id): mixed
+    public function delete(string $schedule_id): UnexpectedResponse
     {
         return $this->request(
         'deleteSchedule',
@@ -200,9 +201,9 @@ class Schedule extends AbstractAPI
      *                            latest result file. This ID is generated when the schedule was created by the
      *                            <strong>createSchedule</strong> method.
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function getLatestResultFile(string $schedule_id): mixed
+    public function getLatestResultFile(string $schedule_id): UnexpectedResponse
     {
         return $this->request(
         'getLatestResultFile',
@@ -225,9 +226,9 @@ class Schedule extends AbstractAPI
      *                                     documentation or use the <strong>getScheduleTemplates</strong> method to find
      *                                     the available schedule templates.
      *
-     * @return ScheduleTemplateResponse
+     * @return ScheduleTemplateResponse|UnexpectedResponse
      */
-    public function getTemplate(string $schedule_template_id): ScheduleTemplateResponse
+    public function getTemplate(string $schedule_template_id)
     {
         return $this->request(
         'getScheduleTemplate',
@@ -269,9 +270,9 @@ class Schedule extends AbstractAPI
      *                       parameter is not set, the default value is used and the first page of records is
      *                       returned.<br /><br /><b>Default: </b>0
      *
-     * @return ScheduleTemplateCollection
+     * @return ScheduleTemplateCollection|UnexpectedResponse
      */
-    public function getTemplates(array $queries = []): ScheduleTemplateCollection
+    public function getTemplates(array $queries = [])
     {
         return $this->request(
         'getScheduleTemplates',
